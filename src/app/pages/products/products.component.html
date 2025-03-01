@@ -1,0 +1,55 @@
+
+
+@if (isShown()) {
+<section class="bg-bg-light dark:bg-bg-dark text-text-light dark:text-text-dark px-7 pb-20 mt-28">
+
+    <input  type="search" placeholder="Search by name..."
+    class="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg mb-4 block w-[90%] mx-auto p-2.5  placeholder:text-slate-700 " [(ngModel)]="text">
+
+
+
+
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-5">
+           
+        
+        @for (product of productList() | search:text() ; track product.id) {
+        <div
+            class="card border border-main-color-light/50 dark:border-main-color-dark rounded-md overflow-hidden shadow relative">
+            <div  class="cursor-pointer" [routerLink]="['/details', product.id]">
+                <div class="card-img">
+                    <img [src]="product.imageCover" class="w-full" [alt]="product.title" />
+                </div>
+                <div class="card-body px-2 py-4">
+                    <h4 class="text-main-color-light dark:text-main-color-dark text-xs">{{product.category.name}}</h4>
+                    <h3 class="font-medium">{{product.title.split(' ', 2).join(" ")}}</h3>
+                    <div class="flex justify-between items-center">
+                        <span>{{product.price}} EGP</span>
+                        <div class="flex items-center">
+                            <div>   @for (star of [1,2,3,4,5].slice(0,product.ratingsAverage); track $index) {
+                                <i class="fa fa-star text-yellow-300"></i>
+                         }
+                         @if (product.ratingsAverage %1 !== 0) {
+                            <i class="fa fa-star-half text-yellow-300"></i>
+                         }
+                       </div>
+            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <i role="button"  class="fa-solid fa-heart text-red-700 text-2xl absolute right-4 bottom-24 " (click)="addToWishList(product.id)"></i>
+
+
+            <button class="addBtn btn-dark-light rounded w-[90%] block mx-auto mb-2 py-2" (click)="addToCart(product.id)">Add To Cart <i class="fa fa-plus"> </i></button>
+        </div>
+
+        }
+
+
+    </div>
+
+
+</section>
+}

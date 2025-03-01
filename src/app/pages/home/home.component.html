@@ -1,0 +1,99 @@
+
+<!-- <section class="relative h-screen flex items-center justify-center text-center px-6 section1 w-screen">
+    <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-gray-100 dark:from-blue-600 dark:to-black"></div>
+  
+    <div class="relative z-10 max-w-3xl text-white dark:text-gray-200">
+      <h1 class="text-5xl font-bold mb-4">Discover the Best Products at the Best Prices</h1>
+      <p class="text-lg text-gray-200 dark:text-gray-400 mb-6">Shop now and get exclusive discounts with a unique shopping experience.
+      </p>
+     
+    </div>
+  </section> -->
+
+
+  @if (isShown() && isShown2()) {
+<section class="px-7 pt-36">
+    <div class="grid grid-cols-[minmax(0,1fr)_30%]">
+       
+          <owl-carousel-o [options]="customOptionsMain">
+            <ng-template carouselSlide><img src="/imges/img1.avif" alt="" class="w-full h-[300px]"></ng-template>  
+            <ng-template carouselSlide><img src="/imges/img2.avif" alt="" class="w-full h-[300px]"></ng-template>  
+            <ng-template carouselSlide><img src="/imges/img3.avif" alt="" class="w-full h-[300px]"></ng-template>  
+            <ng-template carouselSlide><img src="/imges/img4.avif" alt="" class="w-full h-[300px]"></ng-template>  
+            <ng-template carouselSlide><img src="/imges/img5.avif" alt="" class="w-full h-[300px]"></ng-template>  
+            <ng-template carouselSlide><img src="/imges/img6.avif" alt="" class="w-full h-[300px]"></ng-template>  
+
+           
+          </owl-carousel-o>
+      
+          <div >
+                <img src="/imges/grocery-banner-2.jpeg" alt="" class="w-full h-[150px]">
+                <img src="/imges/grocery-banner.png" alt="" class="w-full h-[150px]">
+          </div>
+    </div>
+</section>
+
+
+<section class="px-7 py-20">
+    <h2 class="text-center text-4xl my-5">Trending Categories</h2>
+    <owl-carousel-o [options]="customOptions">
+
+        @for (cat of categoryList(); track cat._id) {
+            <ng-template carouselSlide>
+               <img [src]="cat.image" [alt]="cat.name" class="h-[250px]">
+             <h3>{{cat.name}}</h3>
+              </ng-template>
+        }
+    
+      </owl-carousel-o>
+</section>
+
+
+<section class="bg-bg-light dark:bg-bg-dark text-text-light dark:text-text-dark px-7 pb-20">
+    <h2 class="text-center text-4xl my-5 after-header">Trending Collections </h2>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-5">
+           
+        
+        @for (product of productList().slice(0,15)  ; track product.id) {
+        <div
+            class="card border border-main-color-light/50 dark:border-main-color-dark rounded-md overflow-hidden shadow relative">
+            <div [routerLink]="['/details', product.id]" class="cursor-pointer">
+                <div class="card-img">
+                    <img [src]="product.imageCover" class="w-full" [alt]="product.title" />
+                </div>
+                <div class="card-body px-2 py-4 relative">
+                    <h4 class="text-main-color-light dark:text-main-color-dark text-xs">{{product.category.name}}</h4>
+                    <h3 class="font-medium">{{product.title.split(' ', 2).join(" ")}}</h3> 
+                    <div class="flex justify-between items-center">
+                        <span>{{product.price}} EGP</span>
+                      
+                        <div class="flex items-center mt-5">
+                            <div>   @for (star of [1,2,3,4,5].slice(0,product.ratingsAverage); track $index) {
+                                <i class="fa fa-star text-yellow-300"></i>
+                         }
+                         @if (product.ratingsAverage %1 !== 0) {
+                            <i class="fa fa-star-half text-yellow-300"></i>
+                         }
+                       </div>
+            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <i role="button"  class="fa-solid fa-heart text-red-700 text-2xl absolute right-4 bottom-28 "  (click)="addToWishList(product.id) "></i>
+
+
+            <button class="addBtn btn-dark-light rounded w-[90%] block mx-auto mb-2 py-2" (click)="addToCart(product.id)" >Add To Cart <i class="fa fa-plus"> </i></button>
+        </div>
+
+        }
+
+
+    </div>
+
+
+</section>
+  }

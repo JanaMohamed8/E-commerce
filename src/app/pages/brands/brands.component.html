@@ -1,0 +1,33 @@
+@if (isShown()) {
+    <section class="bg-bg-light dark:bg-bg-dark text-text-light dark:text-text-dark px-7 pb-20 mt-28">
+
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-5">
+               
+            
+            @for (product of brandList() ; track $index) {
+            <div
+                class="card border border-main-color-light/50 dark:border-main-color-dark rounded-md overflow-hidden shadow relative">
+                <div  class="cursor-pointer">
+                    <div class="card-img">
+                        <img [src]="product.image" class="w-full h-[300px]" [alt]="product.name" />
+                    </div>
+                    <div class="card-body px-2 py-2">
+                        <h4 class="text-main-color-light dark:text-main-color-dark text-3xl">{{product.name}}</h4>
+                    </div>
+                </div>
+    
+            </div>
+    
+            }
+    
+    
+        </div>
+      
+    
+    
+        
+    
+    
+    </section>
+}

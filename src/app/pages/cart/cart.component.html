@@ -1,0 +1,46 @@
+
+<section class="text-4xl text-text-light  bg-slate-100 rounded shadow-md my-28 mx-10 p-12 ">
+   <div class="flex justify-between">
+     <div>
+      <h1 class="text-4xl ">My Cart</h1>
+      <h3 class="text-xl text-main-color-light dark:text-main-color-dark capitalize ">total cart price: {{CartData().data.totalCartPrice}}</h3>
+     </div>
+      <button class="bg-red-500 text-white rounded md:w-[10%] block mb-2 py-2 mt-3 text-lg w-1/3" (click)="clearCart()">Clear Cart</button>
+   </div>
+         
+
+   @for (productData of CartData().data.products; track $index) {
+      <div class="grid md:grid-cols-[15%_minmax(0,1fr)] border-b-2 pb-5 mt-10">
+
+
+        <div>
+                  <img [src]="productData.product.imageCover" [alt]="productData.product.title" class="w-full object-contain h-[150px]">
+        </div>
+
+        <div class="flex  justify-between ">
+
+           <div class="ms-5 ">
+                  <h2 class="text-2xl">{{productData.product.title}}</h2>
+                   <h3 class="text-xl mt-0 font-light">{{productData.price}} EGP</h3>
+                 <button class="text-2xl mt-2 block" (click)="removeItem(productData.product.id)"><i class="fa-solid fa-trash-can text-red-600"></i></button>
+           </div>
+
+           <div class="text-xl ">
+                 <button class="me-3" (click)=" updateProductQuantity(productData.product.id,productData.count +1)"><i class="fas fa-plus"></i></button>
+                 <span>{{productData.count}}</span>
+                 <button class="ms-3"  (click)=" updateProductQuantity(productData.product.id,productData.count -1)"><i class="fas fa-minus "></i></button>
+           </div>
+
+
+        </div>
+
+    </div>
+
+   }
+
+
+   <button class="w-full addBtn btn-dark-light rounded md:w-[20%] block mb-2 py-2 mt-3" [routerLink]="['/checkout',CartData().cartId]" [disabled]="CartData().data.totalCartPrice ==0">Check Out</button>
+
+</section>
+
+

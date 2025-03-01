@@ -1,0 +1,40 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+@import 'ngx-toastr/toastr';
+
+
+@font-face {
+    font-family: 'headerFont';
+    src: url('/fonts/wilkista-font-1740479890-0/wilkysta.ttf');
+}
+@font-face {
+    font-family:'bodyFont' ;
+    src: url('/fonts/Playfair_Display/PlayfairDisplay-Regular.ttf');
+}
+body{
+    font-family:'bodyFont' ;
+    color: #2F2F2F;
+}
+h1,h2,h3,h4,h5,h6{
+    font-family:'headerFont' ;
+   
+}
+
+.icon-style{
+    @apply text-main-color-light  dark:text-main-color-dark
+}
+
+.body-light-dark{
+    @apply bg-bg-light dark:bg-bg-dark text-text-light dark:text-text-dark
+}
+.btn-dark-light{
+    @apply text-text-dark bg-main-color-light dark:bg-main-color-dark dark:text-text-light
+}
+
+
+
+

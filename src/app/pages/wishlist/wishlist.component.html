@@ -1,0 +1,36 @@
+
+@if (isShown()) {
+<section class="text-4xl text-text-light dark:text-text-dark bg-slate-100 rounded shadow-md my-28 mx-10 p-12 ">
+    <div class="flex justify-between">
+      <div>
+       <h1 class="text-4xl ">My WishList</h1>
+      </div>
+    </div>
+          
+ 
+    @for (productData of wishList(); track $index) {
+       <div class="grid md:grid-cols-[15%_minmax(0,1fr)] border-b-2 pb-5 mt-10">
+ 
+ 
+         <div>
+                   <img [src]="productData.imageCover" [alt]="productData.title" class="w-full object-contain h-[150px]">
+         </div>
+ 
+         <div class="flex  justify-between ">
+ 
+            <div class="ms-5 ">
+                   <h2 class="text-2xl">{{productData.title}}</h2>
+                    <h3 class="text-xl mt-0 font-light">{{productData.price}} EGP</h3>
+                  <button class="text-2xl mt-2 block" (click)="removeItem(productData.id)"><i class="fa-solid fa-trash-can text-red-600"></i></button>
+            </div>
+
+         </div>
+ 
+     </div>
+ 
+    }
+ 
+ 
+ 
+ </section>
+}

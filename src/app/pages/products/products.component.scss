@@ -1,0 +1,11 @@
+.card {
+    .addBtn {
+      transform: translateY(180%);
+      opacity: 0;
+      transition: all 0.3s;
+    }
+    &:hover .addBtn {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }

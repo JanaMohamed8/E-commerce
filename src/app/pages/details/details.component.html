@@ -1,0 +1,65 @@
+@if (isShown()) {
+    <section class="pt-36 pb-10 md:px-4 ">
+     
+        <div class="container">
+            <div class="md:flex"> 
+             
+                <div class=" md:w-1/2">
+                    <owl-carousel-o [options]="customOptions">
+        
+                        @for (img of productData().images; track $index) {
+                           <ng-template carouselSlide>       
+                            <img [src]="img" [alt]="productData().title" class="w-full block object-contain h-[600px]">
+                           </ng-template>
+                        }
+                   
+                     </owl-carousel-o>
+                </div>
+                  
+                <div class=" md:w-1/2 text-text-light dark:text-text-dark px-3">
+                    <h2 class="text-4xl ">{{productData().title}}</h2>
+                    
+    
+                      <div>   @for (star of [1,2,3,4,5].slice(0,productData().ratingsAverage); track $index) {
+                                <i class="fa fa-star text-yellow-300"></i>
+                         }
+                         @if (productData().ratingsAverage %1 !== 0) {
+                            <i class="fa fa-star-half text-yellow-300"></i>
+                         }
+                       </div>
+    
+    
+                       @if (productData().priceAfterDiscount) {
+                        <span class="line-through text-gray-400 text-sm me-2">{{productData().price}}EGP</span>
+                     <span class=" text-sm ">{{productData().priceAfterDiscount}}EGP</span>
+                       }@else {
+                        <span class=" text-sm ">{{productData().price}}EGP</span>
+                       }
+                    
+                    
+                    <p class="text-2xl mt-5 font-medium">Features</p>
+                    <p>{{productData().description}}</p>
+                 
+                     <p class="text-2xl mt-5 font-medium">Category</p>
+                    <p>{{productData().category.name }}</p>
+    
+                     <p class="text-2xl mt-5 font-medium">Brand</p>
+                    <p class="mb-3">{{productData().brand.name}}</p>
+    
+                     <span class="text-lg mt-5 font-medium"><i class="fa-brands fa-web-awesome text-lg me-2"></i>Quantity: </span>
+                    <span class="text-lg">{{productData().quantity}}</span>
+    
+                     <span class="text-lg mt-5 font-medium ms-7"><i class="fa-solid fa-bag-shopping text-lg  me-2"></i>Sold: </span>
+                    <span class="text-lg">{{productData().sold}}</span>
+                 
+                    <button class="addBtn btn-dark-light rounded w-[50%] block me-auto mt-10 py-2" (click)="addToCart(productData().id)">Add To Cart <i class="fa fa-plus"> </i></button>
+        
+                    
+                      
+                     
+                </div>
+                
+            </div>
+        </div>
+    </section>
+}
