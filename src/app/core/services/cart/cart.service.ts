@@ -15,7 +15,7 @@ export class CartService {
 
   addProductToCart(id:string):Observable<any>
   {
-      return this.httpClient.post(`${environment.baseUrl}/api/v1/cart`,
+      return this.httpClient.post(`https://ecommerce.routemisr.com/api/v1/cart`,
 
         {
            "productId": id
@@ -28,7 +28,7 @@ export class CartService {
   }
   removeSpecificCartItem(id:string):Observable<any>
   {
-      return this.httpClient.delete(`${environment.baseUrl}/api/v1/cart/${id}`,
+      return this.httpClient.delete(`https://ecommerce.routemisr.com/api/v1/cart/${id}`,
 
        { headers:{
             token:this.myToken()! 
@@ -38,7 +38,7 @@ export class CartService {
   }
   updateCartProductQuantity(id:string, count:number):Observable<any>
   {
-      return this.httpClient.put(`${environment.baseUrl}/api/v1/cart/${id}`,
+      return this.httpClient.put(`https://ecommerce.routemisr.com/api/v1/cart/${id}`,
 
         {
           "count": count
@@ -54,7 +54,7 @@ export class CartService {
 
 
   GetLoggedUserCart():Observable<any>{
-    return this.httpClient.get(`${environment.baseUrl}/api/v1/cart`,{
+    return this.httpClient.get(`https://ecommerce.routemisr.com/api/v1/cart`,{
       headers:{
         token:this.myToken()!
     }})
@@ -63,7 +63,7 @@ export class CartService {
 
   clearCartItem():Observable<any>
   {
-      return this.httpClient.delete(`${environment.baseUrl}/api/v1/cart`,
+      return this.httpClient.delete(`https://ecommerce.routemisr.com/api/v1/cart`,
 
        { headers:{
             token:this.myToken()! 
