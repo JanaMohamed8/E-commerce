@@ -1,5 +1,5 @@
 
-import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
+import { Component, inject, input, InputSignal, OnInit, signal, WritableSignal } from '@angular/core';
 import { ProductsService } from '../../core/services/products/products.service';
 import { Iproduct } from '../../shared/interfaces/iproduct';
 import { CategoriesService } from '../../core/services/Categories/categories.service';
@@ -36,6 +36,7 @@ export class HomeComponent implements OnInit {
   isShown:WritableSignal<boolean> = signal(false);
   isShown2:WritableSignal<boolean> = signal(false);
 
+
   
   getAllProducts():void
   {
@@ -54,6 +55,14 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
       this.getAllProducts();
       this.getProductCategories()
+    
+        this.cartService.GetLoggedUserCart().subscribe({
+          next: (res)=>{
+               this.cartService.cartNum.set(res.numOfCartItems)
+          }
+          })
+          
+     
   }
   
   
@@ -70,6 +79,11 @@ export class HomeComponent implements OnInit {
       },
     })
   }
+
+      
+
+
+
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
