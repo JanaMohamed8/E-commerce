@@ -20,6 +20,7 @@ export const routes: Routes = [
     {
         path: '', component: BlankComponent,canActivate:[authGuard], children: [
             { path: 'home', loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent), title: 'Home' },
+            { path: 'allorders', loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent), title: 'Home' },
             { path: 'cart', loadComponent: () => import('./pages/cart/cart.component').then(m => m.CartComponent), title: 'Cart' },
             { path: 'categories', loadComponent: () => import('./pages/categories/categories.component').then(m => m.CategoriesComponent), title: 'Categories' },
             { path: 'products', loadComponent: () => import('./pages/products/products.component').then(m => m.ProductsComponent), title: 'Products' },

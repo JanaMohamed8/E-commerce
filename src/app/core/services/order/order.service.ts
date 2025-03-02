@@ -27,5 +27,9 @@ export class OrderService {
       )
     }
 
+  getAllUserOrders(id:string):Observable<any>{
+    return this.httpClient.get(`https://ecommerce.routemisr.com/api/v1/orders/user/${id}`)
+  }
+
       
 }
