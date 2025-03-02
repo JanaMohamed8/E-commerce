@@ -14,7 +14,7 @@ export class OrderService {
    myToken:WritableSignal<string|null>=signal(localStorage.getItem("userToken"))
 
     sendOnlineOrder(cartId:string,formData:object):Observable<any>{
-      return this.httpClient.post(`${environment.baseUrl}/api/v1/orders/checkout-session/${cartId}?url=http://localhost:4200`,
+      return this.httpClient.post(`${environment.baseUrl}/api/v1/orders/checkout-session/${cartId}?url=https://e-commerce-weld-nine-20.vercel.app`,
         {
           "shippingAddress":formData
         }
