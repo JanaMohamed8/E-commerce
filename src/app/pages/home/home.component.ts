@@ -1,5 +1,5 @@
 
-import { Component, inject, input, InputSignal, OnInit, signal, WritableSignal } from '@angular/core';
+import { AfterViewInit, Component, inject, input, InputSignal, OnInit, signal, WritableSignal } from '@angular/core';
 import { ProductsService } from '../../core/services/products/products.service';
 import { Iproduct } from '../../shared/interfaces/iproduct';
 import { CategoriesService } from '../../core/services/Categories/categories.service';
@@ -19,7 +19,7 @@ import { IWish } from '../../shared/interfaces/iwish';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit,AfterViewInit {
   private readonly wishlistService=inject(WishlistService)
   private readonly productsService=inject(ProductsService)
   productList:WritableSignal<Iproduct[]>=signal([])
@@ -55,14 +55,15 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
       this.getAllProducts();
       this.getProductCategories()
-    
-        this.cartService.GetLoggedUserCart().subscribe({
-          next: (res)=>{
-               this.cartService.cartNum.set(res.numOfCartItems)
-          }
-          })
-          
      
+  }
+  ngAfterViewInit(): void {
+    this.cartService.GetLoggedUserCart().subscribe({
+      next: (res)=>{
+           this.cartService.cartNum.set(res.numOfCartItems)
+           console.log("cartnum",res.numOfCartItems)
+      }
+      })
   }
   
   
@@ -80,6 +81,8 @@ export class HomeComponent implements OnInit {
     })
   }
 
+
+   
       
 
 
