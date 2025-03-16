@@ -21,7 +21,7 @@ export class CartService {
            "productId": id
         },
        { headers:{
-            token:this.myToken()! 
+            token:this.myToken()?.toString()! 
         }
       }
       )
