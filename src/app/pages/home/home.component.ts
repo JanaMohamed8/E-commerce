@@ -55,6 +55,7 @@ export class HomeComponent implements OnInit,AfterViewInit {
   ngOnInit(): void {
       this.getAllProducts();
       this.getProductCategories()
+      this.cartService.myToken=localStorage.getItem("userToken")!
      
   }
   ngAfterViewInit(): void {

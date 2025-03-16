@@ -10,7 +10,9 @@ import { environment } from '../../environment/environment';
 export class CartService {
 
   constructor(private httpClient:HttpClient) { }
-  myToken:WritableSignal<string|null>=signal(localStorage.getItem("userToken"))
+  //myToken:WritableSignal<string|null>=signal(localStorage.getItem("userToken"))
+  myToken:string=localStorage.getItem("userToken")!
+  
   cartNum:WritableSignal<number>=signal(0)
 
   addProductToCart(id:string):Observable<any>
@@ -21,7 +23,7 @@ export class CartService {
            "productId": id
         },
        { headers:{
-            token:this.myToken()?.toString()! 
+            token:this.myToken?.toString()! 
         }
       }
       )
@@ -31,7 +33,7 @@ export class CartService {
       return this.httpClient.delete(`https://ecommerce.routemisr.com/api/v1/cart/${id}`,
 
        { headers:{
-            token:this.myToken()! 
+            token:this.myToken! 
         }
       }
       )
@@ -46,7 +48,7 @@ export class CartService {
         ,
        {
          headers:{
-            token:this.myToken()! 
+            token:this.myToken! 
         }
       }
       )
@@ -56,7 +58,7 @@ export class CartService {
   GetLoggedUserCart():Observable<any>{
     return this.httpClient.get(`https://ecommerce.routemisr.com/api/v1/cart`,{
       headers:{
-        token:this.myToken()!
+        token:this.myToken!
     }})
   }
 
@@ -66,7 +68,7 @@ export class CartService {
       return this.httpClient.delete(`https://ecommerce.routemisr.com/api/v1/cart`,
 
        { headers:{
-            token:this.myToken()! 
+            token:this.myToken! 
         }
       }
       )
